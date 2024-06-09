@@ -25,16 +25,26 @@ const Web3Provider: FunctionComponent<IProps> = ({ children }) => {
 
   useEffect(() => {
     async function initWeb3() {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const contract = await loadContract('NftMarket', provider);
-      setWeb3Api(
-        createWeb3State({
-          ethereum: window.ethereum,
-          provider,
-          contract,
-          isLoading: false,
-        })
-      );
+      try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const contract = await loadContract('NftMarket', provider);
+        setWeb3Api(
+          createWeb3State({
+            ethereum: window.ethereum,
+            provider,
+            contract,
+            isLoading: false,
+          })
+        );
+      } catch (error) {
+        console.error('Error: Please connect to MetaMask wallet!');
+        setWeb3Api((api) =>
+          createWeb3State({
+            ...(api as any),
+            isLoading: false,
+          })
+        );
+      }
     }
     initWeb3();
   }, []);

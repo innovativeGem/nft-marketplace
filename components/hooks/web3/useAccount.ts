@@ -5,7 +5,7 @@ import useSWR from 'swr';
 type UseAccountResponse = {
   connect: () => void;
   isLoading: boolean;
-  isValidating: boolean;
+  isInstalled: boolean;
 };
 
 type TAccountHookFactory = TCryptoHookFactory<string, UseAccountResponse>;
