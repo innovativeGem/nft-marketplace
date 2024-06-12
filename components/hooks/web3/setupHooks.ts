@@ -3,9 +3,14 @@ import {
   hookFactory as createAccountHook,
   TUseAccountHook,
 } from './useAccount';
+import {
+  hookFactory as createNetworkHook,
+  TUseNetworkHook,
+} from './useNetwork';
 
 export type TWeb3Hooks = {
   useAccount: TUseAccountHook;
+  useNetwork: TUseNetworkHook;
 };
 
 export type SetupHooks = {
@@ -15,5 +20,6 @@ export type SetupHooks = {
 export const setupHooks: SetupHooks = (deps) => {
   return {
     useAccount: createAccountHook(deps),
+    useNetwork: createNetworkHook(deps),
   };
 };

@@ -29,6 +29,7 @@ export const hookFactory: TAccountHookFactory =
       },
       {
         revalidateOnFocus: false,
+        shouldRetryOnError: false,
       }
     );
 
@@ -62,7 +63,7 @@ export const hookFactory: TAccountHookFactory =
       data,
       mutate,
       isValidating,
-      isLoading: isLoading || isValidating,
+      isLoading: isLoading as boolean,
       isInstalled: ethereum?.isMetaMask || false,
       connect,
     };
